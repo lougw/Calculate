@@ -60,33 +60,6 @@
                 android:textSize="20sp" />
         </RadioGroup>
 
-        <FrameLayout
-            android:id="@+id/op_fl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/algorithm_rg">
-
-            <Button
-                android:id="@+id/exam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="出题"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="center"
-                android:text="提交卷子"
-                android:textSize="20sp" />
-
-        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/range_ll"
@@ -95,7 +68,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/op_fl">
+            app:layout_constraintTop_toBottomOf="@id/algorithm_rg">
 
             <SeekBar
                 android:id="@+id/range_sb"
@@ -118,6 +91,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/num_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -144,6 +118,44 @@
 
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/op_fl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/num_ll">
+
+            <Button
+                android:id="@+id/exam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="出题"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="center"
+                android:text="提交卷子"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v7.widget.RecyclerView

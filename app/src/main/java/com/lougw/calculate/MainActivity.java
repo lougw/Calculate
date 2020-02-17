@@ -1,7 +1,7 @@
 package com.lougw.calculate;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final Pattern NUMBER_PATTERN_INT = Pattern.compile("^-?[1-9]\\d*$");
     private static final Pattern NUMBER_PATTERN_FLOAT = Pattern.compile("^-?([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*|0?\\.0+|0)$");
     private static final NumberFormat DECIMAL_FORMAT = new DecimalFormat("#.#");
+
     private RadioGroup algorithm_rg;
     private RadioButton plus_rb;
     private RadioButton minus_rb;
@@ -52,6 +53,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView range;
     private SeekBar num_sb;
     private TextView num;
+    private TextView time;
+    private long lastTime = 0;
+    private Handler mHandler = new Handler();
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mHandler.postDelayed(this, 1000);
+            long current = System.currentTimeMillis();
+            time.setText(doFormatTimer((current - (lastTime == 0 ? current : lastTime)) / 1000));
+        }
+    };
 
     public static boolean isNumber(String str) {
         if (TextUtils.isEmpty(str)) {
@@ -76,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         range = findViewById(R.id.range);
         num = findViewById(R.id.num);
         num_sb = findViewById(R.id.num_sb);
+        time = findViewById(R.id.time);
         range_sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -128,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         mBaseRecyclerAdapter.clear();
+        doStopTiming();
     }
 
     @Override
@@ -170,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             data.add(bean);
         }
         mBaseRecyclerAdapter.setData(data);
+        doStartTiming();
     }
 
     private void doPackBeanPlus(CalculateBean bean, int progress) {
@@ -303,6 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(getApplicationContext(), "答题有错误，请修改后再提交", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(), "恭喜你答了100分", Toast.LENGTH_LONG).show();
+            doStopTiming();
         }
         mBaseRecyclerAdapter.notifyItemRangeChanged(0, size);
     }
@@ -396,5 +412,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemClick(View view, int position) {
 
+    }
+
+    private String doFormatTimer(long time) {
+        final int MINUTE = 60;
+        final int HOUR = 60 * 60;
+        return (int) time / HOUR + ":" + (int) time % HOUR / MINUTE + ":" + time % MINUTE;
+    }
+
+    private void doStartTiming() {
+        lastTime = System.currentTimeMillis();
+        mHandler.removeCallbacks(mRunnable);
+        mHandler.postDelayed(mRunnable, 1000);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        doStopTiming();
+    }
+
+    private void doStopTiming() {
+        mHandler.removeCallbacks(mRunnable);
     }
 }
