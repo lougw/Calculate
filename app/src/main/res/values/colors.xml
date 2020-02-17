@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="transparent_per_5_white">#0DFFFFFF</color>
+    <color name="transparent_per_10_white">#1AFFFFFF</color>
+    <color name="transparent_per_20_white">#33FFFFFF</color>
+    <color name="transparent_per_30_white">#4DFFFFFF</color>
+    <color name="transparent_per_40_white">#66FFFFFF</color>
+    <color name="transparent_per_50_white">#80FFFFFF</color>
+    <color name="transparent_per_60_white">#99FFFFFF</color>
+    <color name="transparent_per_70_white">#B3FFFFFF</color>
+    <color name="transparent_per_80_white">#CCFFFFFF</color>
+    <color name="transparent_per_90_white">#E6FFFFFF</color>
+    <color name="transparent_per_100_white">#FFFFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="transparent_per_10_black">#1A000000</color>
+    <color name="transparent_per_15_black">#26000000</color>
+    <color name="transparent_per_20_black">#33000000</color>
+    <color name="transparent_per_30_black">#4D000000</color>
+    <color name="transparent_per_40_black">#66000000</color>
+    <color name="transparent_per_50_black">#80000000</color>
+    <color name="transparent_per_60_black">#99000000</color>
+    <color name="transparent_per_70_black">#B3000000</color>
+    <color name="transparent_per_80_black">#CC000000</color>
+    <color name="transparent_per_90_black">#E6000000</color>
+    <color name="black">#FF000000</color>
+
+    <color name="red">@android:color/holo_red_dark</color>
+
+</resources>
